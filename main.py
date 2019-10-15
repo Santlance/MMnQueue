@@ -1,3 +1,9 @@
+'''
+ Copyright (c) 2019 Lance. All rights reserved.
+ E-mail : 981103924@qq.com
+'''
+
+
 from customer import *
 from collections import deque
 from waitQueue import *
