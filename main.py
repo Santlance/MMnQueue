@@ -6,7 +6,7 @@ import numpy as npy
 import matplotlib.pyplot as mplot
 # 函数入口
 if __name__ == '__main__' :
-    instr = input("请输入平均到达时间、平均服务时间、顾客数、队列最大长度、服务器数\n")
+    instr = input("\n请输入平均到达时间、平均服务时间、顾客数、队列最大长度、服务器数\n")
     strs = instr.split(" ")
     averArrTime = float(strs[0])
     averSerTime = float(strs[1])
@@ -16,7 +16,7 @@ if __name__ == '__main__' :
     wQueue = waitQueue(maxQueueLen)
 
     # produce the interval time sequence refer to poisson_distribution
-    arrTimes = npy.random.poisson(float(averArrTime),customerNum)      
+    arrTimes = npy.random.exponential(float(averArrTime),customerNum)      
     # produce the serval time sequence refer to exponential_distribution
     serTimes = npy.random.exponential(averSerTime,customerNum)  
     customers = []
@@ -58,9 +58,9 @@ if __name__ == '__main__' :
     for i in range(0,len(ser.eventTime)) : 
         fig1.annotate(str(ser.cusid[i]),(ser.eventTime[i],ser.events[i]))
     
-    fig2 = fig1.twinx() # 双Y轴
-    #fig = mplot.figure()
-    #fig2 = fig.add_subplot()
+    #fig2 = fig1.twinx() # 双Y轴
+    fig = mplot.figure()
+    fig2 = fig.add_subplot()
     fig2.step(ser.eventTime,ser.queueSize)
     fig2.set_ylabel("queue size")
     fig2.set_xlabel("current time")
